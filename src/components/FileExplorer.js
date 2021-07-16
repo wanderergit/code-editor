@@ -7,61 +7,133 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-markup';
 import './prism.css';
 
+import PastebinAPI from 'pastebin-js'
+
 require('prismjs/components/prism-jsx');
 require('prismjs/components/prism-css');
+
 
 export default function FileExplorer() {
 
   const [html, setHtml] = useState('')
   const [css, setCss] = useState('')
   const [js, setJs] = useState('')
+  const [screenHtml, setScreenHtml] = useState(true)
+  const [screenCss, setScreenCss] = useState(false)
+  const [screenJs, setScreenJs] = useState(false)
+  const [screenShare, setScreenShare] = useState(false)
+
+  const createPaste = () => {
+    const pastebin = new PastebinAPI('lnR9ZzhZ2oKdtIwAMkWufgeqc3idGx_v');
+
+    pastebin.createPaste("Test from pastebin-js", "pastebin-js")
+      .then(function (data) {
+        console.log(data);
+      })
+      .fail(function (err) {
+        console.log(err);
+      })
+  }
+
+  const toggleScreens = (screen) => {
+    if (screen === 'html') {
+      setScreenHtml(true)
+      setScreenCss(false)
+      setScreenJs(false)
+      setScreenShare(false)
+    } else if (screen === 'css') {
+      setScreenHtml(false)
+      setScreenCss(true)
+      setScreenJs(false)
+      setScreenShare(false)
+    } else if (screen === 'js') {
+      setScreenHtml(false)
+      setScreenCss(false)
+      setScreenJs(true)
+      setScreenShare(false)
+    } else if (screen === 'all') {
+      setScreenHtml(true)
+      setScreenCss(true)
+      setScreenJs(true)
+      setScreenShare(false)
+    } else if (screen === 'share') {
+      setScreenHtml(false)
+      setScreenCss(false)
+      setScreenJs(false)
+      setScreenShare(true)
+    }
+  }
 
   return (
     <div className="page-wrap twilight">
       <div className="boxes">
         <div className="coding_area">
-          <Editor
-            placeholder="HTML"
-            value={html}
-            onValueChange={code => setHtml(code)}
-            highlight={code => highlight(code, languages.jsx)}
-            padding={10}
-            style={{
-              fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 12,
-              color: 'white',
-              backgroundColor: '#333234'
-            }}
-            className="prism"
-          />
-          <Editor
-            placeholder="CSS"
-            value={css}
-            onValueChange={code => setCss(code)}
-            highlight={code => highlight(code, languages.css)}
-            padding={10}
-            style={{
-              fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 12,
-              color: 'white',
-              backgroundColor: '#333234'
-            }}
-            className="prism"
-          />
-          <Editor
-            placeholder="JS"
-            value={js}
-            onValueChange={code => setJs(code)}
-            highlight={code => highlight(code, languages.js)}
-            padding={10}
-            style={{
-              fontFamily: '"Fira code", "Fira Mono", monospace',
-              fontSize: 12,
-              color: 'white',
-              backgroundColor: '#333234'
-            }}
-            className="prism"
-          />
+          <div className="prism-min">
+            <span className="prism-head">File Explorer</span>
+            <div onClick={() => toggleScreens('html')}>index.html</div>
+            <div onClick={() => toggleScreens('css')}>app.css</div>
+            <div onClick={() => toggleScreens('js')} >index.js</div>
+            <div onClick={() => toggleScreens('all')} >All files</div>
+            <span className="prism-head">Share</span>
+            <div onClick={() => {
+              toggleScreens('share')
+              createPaste()
+            }} >Get Link</div>
+          </div>
+          {
+            screenHtml && <Editor
+              placeholder="HTML"
+              value={html}
+              onValueChange={code => setHtml(code)}
+              highlight={code => highlight(code, languages.jsx)}
+              padding={10}
+              style={{
+                fontFamily: '"Fira code", "Fira Mono", monospace',
+                fontSize: 12,
+                color: 'white',
+                backgroundColor: '#333234'
+              }}
+              className="prism"
+            />
+          }
+          {
+            screenCss && <Editor
+              placeholder="CSS"
+              value={css}
+              onValueChange={code => setCss(code)}
+              highlight={code => highlight(code, languages.css)}
+              padding={10}
+              style={{
+                fontFamily: '"Fira code", "Fira Mono", monospace',
+                fontSize: 12,
+                color: 'white',
+                backgroundColor: '#333234'
+              }}
+              className="prism"
+            />
+          }
+          {
+            screenJs && <Editor
+              placeholder="JS"
+              value={js}
+              onValueChange={code => setJs(code)}
+              highlight={code => highlight(code, languages.js)}
+              padding={10}
+              style={{
+                fontFamily: '"Fira code", "Fira Mono", monospace',
+                fontSize: 12,
+                color: 'white',
+                backgroundColor: '#333234'
+              }}
+              className="prism"
+            />
+          }
+
+          {
+            screenShare && <div className="prism">
+            </div>
+          }
+
         </div>
         <LiveView code={`${html}<style>${css}</style><script>${js}</script>`}>
         </LiveView>

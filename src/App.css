@@ -15,9 +15,41 @@
   background-color: #4A4D58;
 }
 
+.prism-min {
+  min-height: 350px;
+  flex: 1;
+  overflow-x: hidden;
+  background-color: #282C34;
+  margin: 10px;
+}
+
+.prism-head {
+  background-color: #282C34;
+  color: white;
+  display: block;
+  padding: 12px;
+  border-bottom: 1px solid #4A4D58;
+  border-top: 1px solid #4A4D58;
+}
+
+.prism-head:hover {
+  background-color: #282C34;
+}
+
+.prism-min div {
+  background-color: #282C34;
+  color: white;
+  display: block;
+  padding: 12px;
+}
+
+.prism-min div:hover {
+  background-color: #404550;
+}
+
 .prism {
   min-height: 350px;
-  width: 100%;
+  flex: 3;
   overflow-x: hidden;
   background-color: #333234;
   margin: 10px;
@@ -26,7 +58,7 @@
 .code {
   bottom: 0;
   position: relative;
-  width: 100%;
+  flex: 3;
   height: 45vh;
   border: unset;
 }

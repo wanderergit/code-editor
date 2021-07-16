@@ -18,7 +18,7 @@ export default class LiveView extends Component {
   render() {
     const { children, code } = this.props;
     return (
-      <iframe className='code' srcDoc={`<!DOCTYPE html>${code}`} ref={node => (this.node = node)}>
+      <iframe title="code" className='code' srcDoc={`<!DOCTYPE html>${code}`} ref={node => (this.node = node)}>
         {this.iframeRoot && ReactDOM.createPortal(children, this.iframeRoot)}
       </iframe>
     );
