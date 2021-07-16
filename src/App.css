@@ -58,7 +58,7 @@
 .code {
   bottom: 0;
   position: relative;
-  flex: 3;
   height: 45vh;
+  min-width: 100vw;
   border: unset;
 }
