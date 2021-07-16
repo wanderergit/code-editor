@@ -12,21 +12,21 @@
 .coding_area{
   display: flex;
   min-width: 100vw;
-  background-color: #282c34;
+  background-color: #4A4D58;
 }
 
-.prism-live {
+.prism {
   min-height: 350px;
   width: 100%;
   overflow-x: hidden;
   background-color: #333234;
-  color: white;
+  margin: 10px;
 }
 
 .code {
   bottom: 0;
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 45vh;
   border: unset;
 }
