@@ -9,7 +9,7 @@ import PasteClient from "pastebin-api";
   method which creates a pastebin client to access post API
 */
 const postData = async (code) => {
-  const client = new PasteClient("8Uh0E5urQ8q6X-NXr_lvSXnWskK1tDtX");
+  const client = new PasteClient("PASTEBIN_DEV_KEY");
 
   const url = await client.createPaste({
     code: code,
