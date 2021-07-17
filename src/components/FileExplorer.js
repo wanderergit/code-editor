@@ -7,12 +7,13 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-markup';
 import './prism.css';
 
-import PastebinAPI from 'pastebin-js'
-
 require('prismjs/components/prism-jsx');
 require('prismjs/components/prism-css');
 
-
+/*
+  This component displays the code editors, maintains their state and passes it on
+  the LiveView iframe component
+*/
 export default function FileExplorer() {
 
   const [html, setHtml] = useState('')
@@ -22,17 +23,23 @@ export default function FileExplorer() {
   const [screenCss, setScreenCss] = useState(false)
   const [screenJs, setScreenJs] = useState(false)
   const [screenShare, setScreenShare] = useState(false)
+  const [url, setUrl] = useState('')
 
-  const createPaste = () => {
-    const pastebin = new PastebinAPI('lnR9ZzhZ2oKdtIwAMkWufgeqc3idGx_v');
-
-    pastebin.createPaste("Test from pastebin-js", "pastebin-js")
-      .then(function (data) {
-        console.log(data);
+  const createPaste = async () => {
+    const item = {
+      "code": `${html}<style>${css}</style><script>${js}</script>`
+    }
+    await fetch('/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    })
+      .then(function (response) {
+        return response.json();
       })
-      .fail(function (err) {
-        console.log(err);
-      })
+      .then(data => setUrl(data.url));
   }
 
   const toggleScreens = (screen) => {
@@ -131,6 +138,7 @@ export default function FileExplorer() {
 
           {
             screenShare && <div className="prism">
+              {url}
             </div>
           }
 

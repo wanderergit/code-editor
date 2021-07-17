@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+/*
+  LiveView - iframe component with hot reloading
+*/
 export default class LiveView extends Component {
   componentDidMount() {
     this.node.addEventListener("load", this.handleLoad);
