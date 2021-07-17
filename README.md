@@ -134,7 +134,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/wanderergit/code-editor](https://github.com/wanderergit/code-editor)
+Project Link: [https://wanderergit.github.io/code-editor/](https://wanderergit.github.io/code-editor/)
 
 [product-screenshot1]: public/images/screenshot1.png
 [product-screenshot2]: public/images/screenshot2.png
