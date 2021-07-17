@@ -48,7 +48,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project was made in connection with Dyte recruitment drive in VIT. The project is live at [Code Editor](https://wanderergit.github.io/code-editor/)
+This project was made in connection with Dyte recruitment drive in VIT. The project is live at [Code Editor](https://wanderergit.github.io/code-editor/). Kindly Note : Pastebin feature is not live on production. Please test it using your personal Pastebin dev key on local system.
 
 ### Built With
 
