@@ -136,5 +136,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Project Link: [https://github.com/wanderergit/code-editor](https://github.com/wanderergit/code-editor)
 
-[product-screenshot1]: images/screenshot1.png
-[product-screenshot2]: images/screenshot2.png
+[product-screenshot1]: public/images/screenshot1.png
+[product-screenshot2]: public/images/screenshot2.png
